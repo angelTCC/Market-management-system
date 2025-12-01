@@ -12,8 +12,8 @@ public class ProductoAlimenticio extends Producto implements Descontable {
     private final Double IMPUESTO = 0.1;
     private Date fecha_caducidad;
 
-    public ProductoAlimenticio(Integer id, String nombre, Double precioBase, Date fecha_caducidad) {
-        super(id, nombre, precioBase);
+    public ProductoAlimenticio(Integer id, String nombre, Double precioBase, Date fecha_caducidad, Integer stock) {
+        super(id, nombre, precioBase, stock);
         this.fecha_caducidad = fecha_caducidad;
     }
 

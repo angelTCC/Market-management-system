@@ -10,8 +10,8 @@ public class ProductoElectronico extends Producto {
     private Integer garantia ;
     private final Double IMPUESTO = 0.3;
 
-    public ProductoElectronico ( Integer id, String nombre, Double precioBase, Integer garantia) {
-        super(id, nombre, precioBase);
+    public ProductoElectronico ( Integer id, String nombre, Double precioBase, Integer garantia, Integer stock) {
+        super(id, nombre, precioBase, stock);
         this.garantia = garantia;
     }
 
