@@ -1,10 +1,11 @@
-import javax.swing.*;
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.text.DecimalFormat;
 import java.util.*;
 
+import model.CarritoItem;
 import model.ProductoAlimenticio;
 import model.ProductoElectronico;
+import repository.CarritoRepository;
+import repository.CarritoRepositoryMemory;
 import repository.ProductoRepository;
 import repository.ProductoRepositoryMemory;
 
@@ -12,7 +13,9 @@ import repository.ProductoRepositoryMemory;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) {
+
         ProductoRepository repo = new ProductoRepositoryMemory();
+        CarritoRepository carrito = new CarritoRepositoryMemory();
 
     // Productos alimenticios con stock
         ProductoAlimenticio leche = new ProductoAlimenticio(1, "Leche", 5.0, new Date(), 20);
@@ -85,22 +88,31 @@ public class Main {
                                 p.getStock());
                     }
                     System.out.println("------------------------------------");
+
                     // ingresando valores
-                    /*
                     Scanner sc = new Scanner(System.in);
                     System.out.print("Ingrese el ID del producto a agregar: ");
-                    Integer id_sel = sc.nextInt();
+                    Integer producto_id = sc.nextInt();
                     System.out.print("Ingrese la cantidad: ");
-                    Integer cant_sel = sc.nextInt();
+                    Integer cantidad = sc.nextInt();
 
                     // mostrando resultado parcial
-                    System.out.printf("se agregaro %d unidades de %d al carrito \n", id_sel, cant_sel);
+                    System.out.printf("se agregaro %d unidades de %d al carrito \n", cantidad, producto_id);
+                    carrito.insertar(producto_id, new CarritoItem(producto_id, cantidad, repo.buscarPorId(producto_id)));
                     System.out.print("subtotal (falta implementar)");
-                    */
-
+                    System.out.println(repo.buscarPorId(producto_id).calcularPrecioFinal() * cantidad);
+                    
                 }
-                case 2 -> System.out.printf("> Seleccionaste %d", opcion);
-                case 3 -> System.out.printf("> Seleccionaste %d", opcion);
+                case 2 -> {
+                    System.out.println("> Seleccionaste mostrar el carrito de compras");
+                    List<CarritoItem> items = carrito.buscarTodos();
+                    for ( CarritoItem item: items ) {
+                        System.out.println(item.getProducto().getNombre() + "----" + item.getCantidad());
+                    }
+                }
+                case 3 -> {
+                    System.out.println("> Seleccionaste pagar y salir");
+                }
                 case 4 -> {
                     System.out.printf("> Seleccionaste %d", opcion);
                     exit = false;
@@ -110,6 +122,7 @@ public class Main {
 
 
         // Buscar por ID
+
         model.Producto buscado = repo.buscarPorId(1);
         System.out.println("\nProducto buscado con ID 1: " + buscado.getNombre());
     }

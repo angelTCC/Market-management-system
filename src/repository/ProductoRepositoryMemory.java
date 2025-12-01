@@ -14,7 +14,7 @@ public class ProductoRepositoryMemory implements ProductoRepository {
 
     @Override
     public void actualizar(Producto producto) {
-        store.put(producto.getId(), producto); // reemplaza si existe
+        store.put(producto.getId(), producto);
     }
 
     @Override
