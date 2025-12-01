@@ -4,6 +4,7 @@ import java.util.*;
 import model.CarritoItem;
 import model.ProductoAlimenticio;
 import model.ProductoElectronico;
+import model.Venta;
 import repository.CarritoRepository;
 import repository.CarritoRepositoryMemory;
 import repository.ProductoRepository;
@@ -112,6 +113,9 @@ public class Main {
                 }
                 case 3 -> {
                     System.out.println("> Seleccionaste pagar y salir");
+                    Venta venta = new Venta(1, new Date(), carrito.buscarTodos());
+                    System.out.println(venta.getFecha() + "----" +
+                            venta.getTotal());
                 }
                 case 4 -> {
                     System.out.printf("> Seleccionaste %d", opcion);

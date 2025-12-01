@@ -12,6 +12,10 @@ public class CarritoItem {
         this.producto = producto;
     }
 
+    public Double getSubtotal(){
+        return this.cantidad * this.getProducto().calcularPrecioFinal();
+    }
+
 
     public Integer getId() {
         return id;
