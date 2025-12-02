@@ -21,4 +21,16 @@ public class CarritoRepositoryMemory implements CarritoRepository {
         return new ArrayList<>(items.values());
     }
 
+    @Override
+    public void vaciarCarrito() {
+        items.clear();
+    }
+
+    @Override
+    public CarritoItem buscarItem (Integer id){
+        return items.get(id);
+    }
+
+
+
 }
