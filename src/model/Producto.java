@@ -14,8 +14,6 @@ public abstract class Producto {
         this.stock = stock;
     }
 
-    public abstract Double calcularPrecioFinal();
-
     // metodos get y setter
 
     public Integer getId () { return this.id; }

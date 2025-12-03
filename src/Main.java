@@ -55,7 +55,7 @@ public class Main {
                     // se guarda la venta en el historial y se vacia el carrito
                     Venta venta = service.pagar();
                     menu.infoVenta(venta);
-                    histoVenta.insertarVenta(venta);
+                    service.registrarVenta(venta);
                     //exit = false;
                     menu.pausar();
 

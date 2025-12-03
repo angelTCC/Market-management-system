@@ -34,7 +34,7 @@ public class CarritoService {
     }
 
     public Venta pagar() {
-        Venta v = new Venta(1, new java.util.Date(), carrito.buscarTodos());
+        Venta v = new Venta(1, new java.util.Date(), carrito.buscarTodos(), calcularTotal(carrito.buscarTodos()));
         carrito.vaciarCarrito();
         return v;
     }
@@ -45,6 +45,18 @@ public class CarritoService {
 
     public void registrarVenta (Venta v) {
         histoVentas.insertarVenta(v);
+    }
+
+    private double calcularTotal( List<CarritoItem> items) {
+        Double total = 0.;
+        for (CarritoItem item: items) {
+            total = total + item.getCantidad()*item.getProducto().getPrecioBase();
+        }
+        return total;
+    }
+
+    private double calcularSubtotal(CarritoItem item) {
+        return item.getProducto().getPrecioBase()*item.getCantidad();
     }
 
 }

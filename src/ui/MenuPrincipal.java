@@ -16,7 +16,7 @@ public class MenuPrincipal {
         System.out.println("Tienda DEV-SHOP:");
         System.out.println("1. Ver catalogo");
         System.out.println("2. Ver carrito");
-        System.out.println("3. Pagar y salir");
+        System.out.println("3. Pagar");
         System.out.println("4. Salir");
         System.out.print("Opción: ");
         return sc.nextInt();
@@ -32,7 +32,7 @@ public class MenuPrincipal {
             System.out.println(
                     p.getId() + "---" +
                             p.getNombre() + "--" +
-                            df.format(p.calcularPrecioFinal()) + "---" +
+                            df.format(p.getPrecioBase()) + "---" +
                             p.getStock());
         }
 
@@ -44,14 +44,14 @@ public class MenuPrincipal {
             System.out.println(
                     item.getProducto().getNombre() + "----" +
                             item.getCantidad() + "----" +
-                            df.format(item.getSubtotal())
+                            df.format(item.getProducto().getPrecioBase()*item.getCantidad())
             );
         }
     }
 
     public void infoProductoAgregado(CarritoItem item){
         System.out.printf("Se agregaro %d unidades de %s al carrito \n", item.getCantidad(), item.getProducto().getNombre());
-        System.out.printf("subtotal: %s \n", df.format( item.getSubtotal() ) );
+        System.out.printf("subtotal: %s \n", df.format( item.getProducto().getPrecioBase()*item.getCantidad()) );
     }
 
     public void infoVenta ( Venta venta) {
